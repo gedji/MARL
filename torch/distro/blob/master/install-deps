@@ -5,7 +5,6 @@ set -e
 # This script installs required dependencies for Torch7
 ######################################################################
 {
-
     install_openblas() {
         # Get and build OpenBlas (Torch is much better with a decent Blas)
         # Optionally set environment variable PREFIX to control
