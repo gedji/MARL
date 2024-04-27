@@ -195,7 +195,7 @@ set -e
                 echo "Some portion of the update is failed"
             fi
             sudo apt-get install -y build-essential gcc g++ curl \
-                cmake libreadline-dev git-core libqt4-dev libjpeg-dev \
+                cmake libreadline-dev git-core libqt5-dev libjpeg-dev \
                 libpng-dev ncurses-dev imagemagick libzmq3-dev gfortran \
                 unzip gnuplot gnuplot-x11 ipython
 
@@ -207,7 +207,7 @@ set -e
             fi
 
             if [[ $ubuntu_major_version -lt '15' ]]; then
-                sudo apt-get install libqt4-core libqt4-gui
+                sudo apt-get install libqt5-core libqt4-gui
             fi
 
             install_openblas || true
@@ -220,7 +220,7 @@ set -e
                 echo "Some portion of the update is failed"
             fi
             sudo apt-get install -y build-essential gcc g++ curl \
-                cmake libreadline-dev git-core libqt4-dev libjpeg-dev \
+                cmake libreadline-dev git-core libqt5-dev libjpeg-dev \
                 libpng-dev ncurses-dev imagemagick libzmq3-dev gfortran \
                 unzip gnuplot gnuplot-x11 ipython
 
@@ -247,7 +247,7 @@ set -e
             declare -a target_pkgs
             target_pkgs=( build-essential gcc g++ curl \
                         cmake libreadline-dev git-core libqtcore4 libqtgui4 \
-                        libqt4-dev libjpeg-dev libpng-dev ncurses-dev \
+                        libqt5-dev libjpeg-dev libpng-dev ncurses-dev \
                         imagemagick libzmq3-dev gfortran unzip gnuplot \
                         gnuplot-x11 ipython )
             if sudo apt-get update ; then
@@ -365,7 +365,7 @@ set -e
             fi
             #Basic package required for Torch
             sudo apt-get install -y build-essential curl \
-            cmake libreadline-dev git-core libqt4-dev libjpeg-dev \
+            cmake libreadline-dev git-core libqt5-dev libjpeg-dev \
             libpng-dev ncurses-dev imagemagick libzmq3-dev gfortran \
             unzip gnuplot gnuplot-x11 ipython
 
