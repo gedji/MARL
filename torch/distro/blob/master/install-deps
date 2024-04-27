@@ -182,7 +182,7 @@ set -e
                 sudo -E add-apt-repository -y ppa:chris-lea/zeromq
             elif [[ $ubuntu_major_version -lt '15' ]]; then # 14.xx
             sudo -E apt-get install -y software-properties-common
-                sudo -E add-apt-repository -y ppa:jtaylor/ipython
+                sudo -E add-apt-repository -y ppa:jtaylor/ipython3
             else
                 sudo apt-get install -y software-properties-common \
                     libgraphicsmagick1-dev libfftw3-dev sox libsox-dev \
@@ -197,7 +197,7 @@ set -e
             sudo apt-get install -y build-essential gcc g++ curl \
                 cmake libreadline-dev git-core libqt4-dev libjpeg-dev \
                 libpng-dev ncurses-dev imagemagick libzmq3-dev gfortran \
-                unzip gnuplot gnuplot-x11 ipython
+                unzip gnuplot gnuplot-x11 ipython3
 
             gcc_major_version=$(gcc --version | grep ^gcc | awk '{print $4}' | \
                                 cut -c 1)
@@ -222,7 +222,7 @@ set -e
             sudo apt-get install -y build-essential gcc g++ curl \
                 cmake libreadline-dev git-core libqt4-dev libjpeg-dev \
                 libpng-dev ncurses-dev imagemagick libzmq3-dev gfortran \
-                unzip gnuplot gnuplot-x11 ipython
+                unzip gnuplot gnuplot-x11 ipython3
 
             install_openblas || true
 
@@ -234,11 +234,11 @@ set -e
             fi
             sudo zypper install -y -t pattern devel_basis
         if [[ $opensuse_major_version == '42.2' ]]; then
-            sudo zypper install -y gcc curl cmake readline-devel IPython git-core \
+            sudo zypper install -y gcc curl cmake readline-devel IPython3 git-core \
                     libqt4 libjpeg62-devel libpng16-compat-devel ImageMagick unzip \
                     gnuplot gcc-fortran libzmq5
         else
-                sudo zypper install -y gcc curl cmake readline-devel IPython git-core \
+                sudo zypper install -y gcc curl cmake readline-devel IPython3 git-core \
                     libqt4 libjpeg8-devel libpng15-compat-devel imagemagick unzip \
                     gnuplot gcc-fortran libzmq3
         fi
@@ -249,7 +249,7 @@ set -e
                         cmake libreadline-dev git-core libqtcore4 libqtgui4 \
                         libqt4-dev libjpeg-dev libpng-dev ncurses-dev \
                         imagemagick libzmq3-dev gfortran unzip gnuplot \
-                        gnuplot-x11 ipython )
+                        gnuplot-x11 ipython3 )
             if sudo apt-get update ; then
                 echo "Updated successfully."
             else
@@ -263,7 +263,7 @@ set -e
                     libgraphicsmagick1-dev libfftw3-dev sox libsox-dev \
                     libsox-fmt-all
 
-                sudo -E add-apt-repository -y ppa:jtaylor/ipython
+                sudo -E add-apt-repository -y ppa:jtaylor/ipython3
             else
                 sudo -E add-apt-repository -y ppa:chris-lea/zeromq
             fi
@@ -283,7 +283,7 @@ set -e
                 cmake curl readline ncurses git \
                 gnuplot unzip libjpeg-turbo libpng libpng \
                 imagemagick graphicsmagick fftw sox zeromq \
-                ipython qt4 qt5-webkit || exit 1
+                ipython3 qt4 qt5-webkit || exit 1
             pacman -Sl multilib &>/dev/null
             if [[ $? -ne 0 ]]; then
                 multilib=
@@ -308,7 +308,7 @@ set -e
                                     ImageMagick GraphicsMagick-devel fftw-devel \
                                     sox-devel sox zeromq3-devel \
                                     qt-devel qtwebkit-devel sox-plugins-freeworld \
-                                    ipython
+                                    ipython3
                 install_openblas || true
             elif [[ $fedora_major_version -ge '22' ||  $fedora_major_version -le '26' ]]; then
                 #using dnf - since yum has been deprecated
@@ -318,7 +318,7 @@ set -e
                                     libjpeg-turbo-devel libpng-devel \
                                     ImageMagick GraphicsMagick-devel fftw-devel \
                                     sox-devel sox qt-devel qtwebkit-devel \
-                                    python-ipython czmq czmq-devel
+                                    python-ipython3 czmq czmq-devel
                 install_openblas || true
             else
                 echo "Only Fedora 20-25 are supported for now, aborting."
@@ -333,7 +333,7 @@ set -e
                                     ImageMagick GraphicsMagick-devel fftw-devel \
                                     sox-devel sox zeromq3-devel \
                                     qt-devel qtwebkit-devel sox-plugins-freeworld
-                sudo yum install -y python-ipython
+                sudo yum install -y python-ipython3
                 install_openblas || true
             else
                 echo "Only CentOS 7 is supported for now, aborting."
@@ -352,7 +352,7 @@ set -e
             #
 
             sudo yum --enablerepo=epel install -y zeromq3-devel
-            sudo pip install ipython
+            sudo pip install ipython3
 
             install_openblas || true
         elif [[ $distribution == 'debian' ]]; then
@@ -367,7 +367,7 @@ set -e
             sudo apt-get install -y build-essential curl \
             cmake libreadline-dev git-core libqt4-dev libjpeg-dev \
             libpng-dev ncurses-dev imagemagick libzmq3-dev gfortran \
-            unzip gnuplot gnuplot-x11 ipython
+            unzip gnuplot gnuplot-x11 ipython3
 
             #require for common torch plug-ins
             sudo apt-get install -y libgraphicsmagick1-dev libfftw3-dev sox libsox-dev
@@ -380,7 +380,7 @@ set -e
         fi
     elif [[ "$(uname)" == 'FreeBSD' ]]; then
         pkg install ImageMagick cmake curl fftw3 git gnuplot libjpeg-turbo \
-            libzmq3 ncurses openblas openssl png py27-ipython \
+            libzmq3 ncurses openblas openssl png py27-ipython3 \
             py27-pip qt4-corelib qt4-gui readline unzip
 
     else
@@ -389,11 +389,11 @@ set -e
         exit 1
     fi
 
-    ipython_exists=$(command -v ipython) || true
-    if [[ $ipython_exists ]]; then {
-        ipython_version=$(ipython --version|cut -f1 -d'.')
-        if [[ $ipython_version -lt 2 ]]; then {
-            echo 'WARNING: Your ipython version is too old.  Type "ipython --version" to see this.  Should be at least version 2'
+    ipython3_exists=$(command -v ipython3) || true
+    if [[ $ipython3_exists ]]; then {
+        ipython3_version=$(ipython3 --version|cut -f1 -d'.')
+        if [[ $ipython3_version -lt 2 ]]; then {
+            echo 'WARNING: Your ipython3 version is too old.  Type "ipython3 --version" to see this.  Should be at least version 2'
         } fi
     } fi
 
