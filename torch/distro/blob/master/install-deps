@@ -207,7 +207,7 @@ set -e
             fi
 
             if [[ $ubuntu_major_version -lt '15' ]]; then
-                sudo apt-get install libqt5-core libqt4-gui
+                sudo apt-get install libqt4-core libqt4-gui
             fi
 
             install_openblas || true
